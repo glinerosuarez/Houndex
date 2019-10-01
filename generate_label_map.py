@@ -14,7 +14,7 @@ from absl import app
 from absl import flags
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('csv_input', '', 'Path to the labels CSV')
+flags.DEFINE_string('labels_csv', '', 'Path to the labels CSV')
 flags.DEFINE_string('output_path', '', 'Path to output label_map.pbtxt')
 
 def generate_label_map(labels):
