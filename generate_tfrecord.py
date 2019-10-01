@@ -27,7 +27,6 @@ flags.DEFINE_string('csv_input', '', 'Path to the CSV input')
 flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
 flags.DEFINE_string('image_dir', '', 'Path to images')
 
-# TO-DO replace this with label map
 def class_text_to_int(labels, row_label):
     return labels.index(row_label) + 1
 
@@ -82,7 +81,7 @@ def main(_):
     writer = tf.compat.v2.io.TFRecordWriter(FLAGS.output_path)
     path = os.path.join(FLAGS.image_dir)
     examples = pd.read_csv(FLAGS.csv_input)
-    labels = examples['class'].unique().tolist()
+    labels = examples['class'].unique().tolist().sort()
     grouped = split(examples, 'filename')
     for group in grouped:
         tf_example = create_tf_example(group, path, labels)
