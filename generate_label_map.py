@@ -32,7 +32,7 @@ def save_label_map(label_map_string, output_path):
         fid.write(label_map_string)
 
 def main(_):
-  labels = pd.read_csv(FLAGS.csv_input)['class'].unique().tolist()
+  labels = pd.read_csv(FLAGS.labels_csv)['class'].unique().tolist()
   labels.sort()
   label_map_string = generate_label_map(labels)
   save_label_map(label_map_string, FLAGS.output_path)
