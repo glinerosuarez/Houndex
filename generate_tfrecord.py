@@ -81,7 +81,8 @@ def main(_):
     writer = tf.compat.v2.io.TFRecordWriter(FLAGS.output_path)
     path = os.path.join(FLAGS.image_dir)
     examples = pd.read_csv(FLAGS.csv_input)
-    labels = examples['class'].unique().tolist().sort()
+    labels = examples['class'].unique().tolist()
+    labels.sort()
     grouped = split(examples, 'filename')
     for group in grouped:
         tf_example = create_tf_example(group, path, labels)
